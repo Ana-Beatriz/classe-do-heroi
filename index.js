@@ -3,41 +3,41 @@ let tipo
 let ataque
 
 function classe() {
-    let classeHeroi = parseInt(readline.question("Escolha a classe do seu heroi:\n1 - Guerreiro\n2 - Mago\n3 - Monge\n4 - Ninja\n"))
+    let classeHeroi = parseInt(readline.question("\n---- CLASSES DE HEROI ----\n|     1 - Guerreiro      |\n|     2 - Mago           |\n|     3 - Monge          |\n|     4 - Ninja          |\n--------------------------\nEscolha a classe do seu heroi: "))
 
     while (classeHeroi < 1 || classeHeroi > 4) {
-        classeHeroi = parseInt(readline.question("Opcao Incorreta.\nEscolha a classe do seu heroi:\n1 - Guerreiro\n2 - Mago\n3 - Monge\n4 - Ninja\n"))
+        classeHeroi = parseInt(readline.question("\nOpcao incorreta, tente novamente\n\n---- CLASSES DE HEROI ----\n|     1 - Guerreiro      |\n|     2 - Mago           |\n|     3 - Monge          |\n|     4 - Ninja          |\n--------------------------\nEscolha a classe do seu heroi: "))
     }
 
     switch (classeHeroi) {
         case 1:
             tipo = "Guerreiro"
-            ataque = "usou espada"
+            ataque = "espada"
             break;
 
         case 2:
             tipo = "Mago"
-            ataque = "usou magia"
+            ataque = "magia"
             break;
 
         case 3:
             tipo = "Monge"
-            ataque = "usou artes marciais"
+            ataque = "artes marciais"
             break;
 
         case 4:
             tipo = "Ninja"
-            ataque = "usou shuriken"
+            ataque = "shuriken"
             break;
     }
 }
 
 do {
-    let nome = readline.question("Qual o nome do seu Heroi?\n")
-    let idade = readline.question("Qual a idade do seu Heroi?\n")
+    let nome = readline.question("Qual o nome do seu Heroi? ")
+    let idade = readline.question("Qual a idade do seu Heroi? ")
 
     classe()
-    console.log(`o ${tipo} atacou usando ${ataque}`)
+    console.log(`\nO ${tipo} atacou usando ${ataque}\n`)
 
     var repet = readline.question("Nova classificacao? S/N\n")
     console.clear()
