@@ -1,49 +1,74 @@
 let readline = require("readline-sync")
-let tipo
-let ataque
-let classeHeroi
+const clearLastLines = (count) => {
+    process.stdout.moveCursor(0, -count)
+    process.stdout.clearScreenDown()
+  }
 
-function classe() {
-    classeHeroi = parseInt(readline.question("\n---- CLASSES DE HEROI ----\n|     1 - Guerreiro      |\n|     2 - Mago           |\n|     3 - Monge          |\n|     4 - Ninja          |\n--------------------------\nEscolha a classe do seu heroi: "))
-
-    while (classeHeroi < 1 || classeHeroi > 4) {
-        classeHeroi = parseInt(readline.question("\nOpcao incorreta, tente novamente\n\n---- CLASSES DE HEROI ----\n|     1 - Guerreiro      |\n|     2 - Mago           |\n|     3 - Monge          |\n|     4 - Ninja          |\n--------------------------\nEscolha a classe do seu heroi: "))
+class Heroi{
+    constructor(nome, idade, tipo){
+        this.nome = nome
+        this.idade = idade
+        this.tipo = tipo
+        this.ataque = this.tipoAtaque()
     }
 
-    return classeHeroi
+    tipoAtaque(){
+        switch (this.tipo) {
+            case "Guerreiro":
+                return "espada"
+            case "Mago":
+                return "magia"
+            case "Monge":
+                return "artes marciais"
+            case "Ninja":
+                return "shuriken"
+        }
+    }
+
+    escrever(){
+        console.log(`\nO ${this.tipo} atacou usando ${this.ataque}\n`)
+    }
 }
 
-function tipoHeroi(tipos){
-    switch (classeHeroi) {
-        case 1:
-            tipo = "Guerreiro"
-            ataque = "espada"
-            break;
+function classe() {
+    //inicio menu
+    console.log("\n---- CLASSES DE HEROI ----");
+    console.log("|      1 - Guerreiro     |");
+    console.log("|      2 - Mago          |");
+    console.log("|      3 - Monge         |");
+    console.log("|      4 - Ninja         |");
+    console.log("--------------------------")
+    //fim menu
+   
+    let classeHeroi = parseInt(readline.question("\nEscolha a classe do seu heroi: "))
 
-        case 2:
-            tipo = "Mago"
-            ataque = "magia"
-            break;
-
-        case 3:
-            tipo = "Monge"
-            ataque = "artes marciais"
-            break;
-
-        case 4:
-            tipo = "Ninja"
-            ataque = "shuriken"
-            break;
+    while (classeHeroi < 1 || classeHeroi > 4) {
+        clearLastLines(2) // Código para mover o cursor 2 linhas para cima e limpar 
+        classeHeroi = parseInt(readline.question("Opcao invalida.\nEscolha a classe do seu heroi: "))
     }
+    
+    let classeTipo
+        switch (classeHeroi) {
+            case 1:
+                return "Guerreiro"
+            case 2:
+                return "Mago"
+            case 3:
+                return "Monge"
+            case 4:
+                return "Ninja"
+        }
+
+    return classeTipo
 }
 
 do {
     let nome = readline.question("Qual o nome do seu Heroi? ")
     let idade = readline.question("Qual a idade do seu Heroi? ")
-
-    classe()
-    tipoHeroi(classeHeroi)
-    console.log(`\nO ${tipo} atacou usando ${ataque}\n`)
+    let classeHeroi = classe()
+    
+   let novoHeroi = new Heroi (nome, idade, classeHeroi)
+   novoHeroi.escrever()
 
     var repet = readline.question("Nova classificacao? S/N\n")
     console.clear()
