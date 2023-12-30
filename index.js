@@ -42,7 +42,7 @@ function classe() {
    
     let classeHeroi = parseInt(readline.question("\nEscolha a classe do seu heroi: "))
 
-    while (classeHeroi < 1 || classeHeroi > 4) {
+    while (isNaN(classeHeroi) || !(classeHeroi >= 1 && classeHeroi <= 4)) {
         clearLastLines(2) // Código para mover o cursor 2 linhas para cima e limpar 
         classeHeroi = parseInt(readline.question("Opcao invalida.\nEscolha a classe do seu heroi: "))
     }
